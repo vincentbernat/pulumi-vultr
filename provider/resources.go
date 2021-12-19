@@ -78,9 +78,16 @@ func Provider() tfbridge.ProviderInfo {
 			"vultr_reverse_ipv6":      {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ReverseIpv6")},
 			"vultr_snapshot":          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Snapshot")},
 			"vultr_snapshot_from_url": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SnapshotFromUrl")},
-			"vultr_ssh_key":           {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SshKey")},
-			"vultr_startup_script":    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "StartupScript")},
-			"vultr_user":              {Tok: tfbridge.MakeResource(mainPkg, mainMod, "User")},
+			"vultr_ssh_key": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "SshKey"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"ssh_key": {
+						CSharpName: "Key",
+					},
+				},
+			},
+			"vultr_startup_script": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "StartupScript")},
+			"vultr_user":           {Tok: tfbridge.MakeResource(mainPkg, mainMod, "User")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"vultr_account":           {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAccount")},
@@ -105,9 +112,16 @@ func Provider() tfbridge.ProviderInfo {
 			"vultr_reverse_ipv4":      {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getReverseIpv4")},
 			"vultr_reverse_ipv6":      {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getReverseIpv6")},
 			"vultr_snapshot":          {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getSnapshot")},
-			"vultr_ssh_key":           {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getSshKey")},
-			"vultr_startup_script":    {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getStartupScript")},
-			"vultr_user":              {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getUser")},
+			"vultr_ssh_key": {
+				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getSshKey"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"ssh_key": {
+						CSharpName: "Key",
+					},
+				},
+			},
+			"vultr_startup_script": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getStartupScript")},
+			"vultr_user":           {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getUser")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			Dependencies: map[string]string{
