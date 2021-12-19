@@ -109,6 +109,15 @@ func Provider() tfbridge.ProviderInfo {
 			"vultr_startup_script":    {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getStartupScript")},
 			"vultr_user":              {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getUser")},
 		},
+		JavaScript: &tfbridge.JavaScriptInfo{
+			Dependencies: map[string]string{
+				"@pulumi/pulumi": "^3.0.0",
+			},
+			DevDependencies: map[string]string{
+				"@types/node": "^10.0.0",
+				"@types/mime": "^2.0.0",
+			},
+		},
 		Python: &tfbridge.PythonInfo{
 			// List any Python dependencies and their version ranges
 			Requires: map[string]string{
@@ -123,6 +132,11 @@ func Provider() tfbridge.ProviderInfo {
 				mainPkg,
 			),
 			GenerateResourceContainerTypes: true,
+		},
+		CSharp: &tfbridge.CSharpInfo{
+			PackageReferences: map[string]string{
+				"Pulumi": "3.*",
+			},
 		},
 	}
 
